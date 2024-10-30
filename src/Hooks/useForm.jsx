@@ -11,20 +11,22 @@ const types = {
   }
 };
 
+//O type é o tipo do formulario, Ex: qndo for criar o const em outra funcao e passar o useForm("Email") entao seria o tipo
 const useForm = (type) => {
   const [value, setValue] = React.useState('');
   const [error, setError] = React.useState(null);
 
   function validate(value) {
+    //Verifica se o tipo foi definido ou nao
+    //Se passar como false, ele nao valida se o campo esta vazio/aplica regex
     if (type === false) return true;
     if (value.length === 0) {
       setError('Preencha um valor.');
       return false;
-    // biome-ignore lint/style/noUselessElse: <explanation>
+      //Verifica se existe o tipo que quero validar(confere na validacao acima)
     } else if (types[type] && !types[type].regex.test(value)) {
       setError(types[type].message);
       return false;
-    // biome-ignore lint/style/noUselessElse: <explanation>
     } else {
       setError(null);
       return true;
@@ -37,7 +39,10 @@ const useForm = (type) => {
   }
 
   return {
-    value, setValue, onChange, error, validate: () => validate(value), onBlur: () => validate(value)
+    // Fazendo isso a pessoa pode ter acesso as funcoes/estados
+    value, setValue, onChange, error, 
+    // O validate ativa o metodo do valor do validate, sendo assim sendo necessario passar apenas o useForm();
+    validate: () => validate(value), onBlur: () => validate(value)
   };
 };
 
