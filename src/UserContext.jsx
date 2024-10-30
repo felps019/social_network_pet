@@ -11,6 +11,8 @@ export const UserStorage = ({ children }) => {
   const [error, setError] = React.useState(null);
   const navigate = useNavigate();
 
+  //O useCallback deve ser utilizado quando precisar manter uma igualdade referencial
+  //é uma versao memoizada da funcao, recebe dois parametros(funcao callback e array de dep.)
   const userLogout = React.useCallback(
     async function () {
     setData(null);
@@ -72,6 +74,7 @@ export const UserStorage = ({ children }) => {
 
   return (
     //Permite ter acesso ao userLogin para qualquer lugar que usar o userContext
+    // pode passar métodos, propriedades, estados.
     <UserContext.Provider value={{ userLogin, userLogout, data, error, loading, login }}>
       {children}
     </UserContext.Provider>

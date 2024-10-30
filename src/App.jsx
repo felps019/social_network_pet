@@ -13,6 +13,7 @@ const App = () => {
 	return (
 		<div>
 			<BrowserRouter>
+			{/* UserStorage -> funcao que realiza o userContext */}
 				<UserStorage>
 					<Header />
 					<Routes>
