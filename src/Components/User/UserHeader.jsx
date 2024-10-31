@@ -13,7 +13,7 @@ const UserHeader = () => {
     const {pathname} = location;
     switch(pathname) {
       case '/conta/postar':
-        setTitle('Poste sua foto');
+        setTitle('Poste a Foto do Seu Pet');
         break;
       case '/conta/estatisticas':
         setTitle('Estatísticas');

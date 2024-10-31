@@ -51,3 +51,17 @@ export function USER_POST(body){
     },
   };
 }
+
+export function PHOTO_POST(formData, token){
+  return {
+    // biome-ignore lint/style/useTemplate: <explanation>
+    url: API_URL + '/api/photo',
+    options: {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer' + token,
+      },
+      body: formData,
+    },
+  };
+}
