@@ -7,6 +7,6 @@ const ProtectedRoute = ({children}) => {
   // Esse children pega o componente filho do protectedRoute
   // Nesse caso ele pega o User que esta dentro do protectedRoute em App.jsx
   return login ? children : <Navigate to="/login" /> ;
-}
+};
 
 export default ProtectedRoute
