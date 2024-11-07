@@ -1,27 +1,28 @@
 import React from "react";
 import FeedModal from "./FeedModal";
 import FeedPhotos from "./FeedPhotos";
+import PropTypes from "prop-types";
 
 const Feed = ({ user }) => {
 	const [modalPhoto, setModalPhoto] = React.useState(null);
 	const [pages, setPages] = React.useState([1]);
-  const [infinite, setInfinite] = React.useState(true);
+	const [infinite, setInfinite] = React.useState(true);
 
 	React.useEffect(() => {
-    let wait = false;
+		let wait = false;
 		function infiniteScroll() {
-      if(infinite){
-      const scroll = window.scrollY; //Pega a quantidade de scroll feita no site
-      const height = document.body.offsetHeight - window.innerHeight;
-      if(scroll > height * 0.75 && !wait) {
-        setPages((pages) => [...pages, pages.length + 1]);
-        wait = true;
-        setTimeout(() => {
-          wait = false;
-        }, 500)
-      }
-    }
-    }
+			if (infinite) {
+				const scroll = window.scrollY; //Pega a quantidade de scroll feita no site
+				const height = document.body.offsetHeight - window.innerHeight;
+				if (scroll > height * 0.75 && !wait) {
+					setPages((pages) => [...pages, pages.length + 1]);
+					wait = true;
+					setTimeout(() => {
+						wait = false;
+					}, 500);
+				}
+			}
+		}
 		window.addEventListener("wheel", infiniteScroll);
 		window.addEventListener("scroll", infiniteScroll);
 		//Para limpar a funcao
@@ -42,11 +43,22 @@ const Feed = ({ user }) => {
 					user={user}
 					page={page}
 					setModalPhoto={setModalPhoto}
-          setInfinite={setInfinite}
+					setInfinite={setInfinite}
 				/>
 			))}
 		</div>
 	);
+};
+
+Feed.defaultProp = {
+	user: 0,
+};
+
+Feed.PropTypes = {
+	user: PropTypes.oneOfType([
+		PropTypes.string.isRequired,
+		PropTypes.number.isRequired,
+	]),
 };
 
 export default Feed;
