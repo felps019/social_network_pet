@@ -39,7 +39,7 @@ const LoginPasswordReset = () => {
 	}
 
 	return (
-		<div>
+		<section className="animeLeft">
 			<Head title="Criar nova Senha" />
 			<h1 className="title">Redefinir Senha</h1>
 			<form onSubmit={handleSubmit}>
@@ -56,7 +56,7 @@ const LoginPasswordReset = () => {
 				)}
 			</form>
 			<Errors error={error} />
-		</div>
+		</section>
 	);
 };
 
